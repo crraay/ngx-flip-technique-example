@@ -1,0 +1,8 @@
+<div *ngFor="let i of items"
+     flipTechnique
+     class="rectangle"
+     [style.backgroundColor]="i.color"
+     [class.width-extended]="i.extended"
+     (click)="i.extended = !i.extended"
+>
+</div>
