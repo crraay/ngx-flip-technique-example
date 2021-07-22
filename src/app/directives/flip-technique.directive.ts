@@ -12,8 +12,8 @@ export class FlipTechniqueDirective implements OnInit {
 
     constructor(private element: ElementRef) {}
 
-    ngOnInit() {
-        this.element.nativeElement.style.transformOrigin = 'left';
+    ngOnInit(): void {
+        this.element.nativeElement.style.transformOrigin = 'left top';
         this.lastBounds = this.element.nativeElement.getBoundingClientRect();
 
         const animationFrame$ = interval(0, animationFrameScheduler);
@@ -62,8 +62,9 @@ export class FlipTechniqueDirective implements OnInit {
         const deltaX = this.lastBounds.x - newBounds.x;
         const deltaY = this.lastBounds.y - newBounds.y;
         const deltaScaleX = this.lastBounds.width / newBounds.width;
+        const deltaScaleY = this.lastBounds.height / newBounds.height;
 
-        element.style.transform = `translate(${deltaX}px, ${deltaY}px) scaleX(${deltaScaleX})`;
+        element.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(${deltaScaleX}, ${deltaScaleY})`;
         element.style.transition = 'transform 0ms';
 
         // next frame callback
